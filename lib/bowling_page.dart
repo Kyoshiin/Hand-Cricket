@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hand_cricket_flutter/Game_Logic.dart';
-import 'package:hand_cricket_flutter/bowling_page.dart';
 import 'package:hand_cricket_flutter/components/ImageHandler.dart';
 import 'package:hand_cricket_flutter/components/HandArea.dart';
 import 'package:hand_cricket_flutter/components/HeadingArea.dart';
@@ -10,16 +9,14 @@ import 'package:hand_cricket_flutter/constants.dart';
 GameLogic currentgame = GameLogic();
 ImageHandler currentImg = ImageHandler();
 
-class BattingPage extends StatefulWidget {
+class BowlingPage extends StatefulWidget {
   @override
-  _BattingPageState createState() => _BattingPageState();
+  _BowlingPageState createState() => _BowlingPageState();
 }
 
-class _BattingPageState extends State<BattingPage> {
+class _BowlingPageState extends State<BowlingPage> {
   @override
   Widget build(BuildContext context) {
-    Sc_width = MediaQuery.of(context).size.width;
-    Sc_height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SafeArea(
@@ -30,16 +27,16 @@ class _BattingPageState extends State<BattingPage> {
             Container(
               child: Column(
                 children: [
-                  Text('Runs: ' + currentgame.getplayerRuns()),
-                  Text('Wickets: ' + currentgame.getplayerWickets()),
+                  Text('CPU Runs: ' + currentgame.getcpuRuns()),
+                  Text('CPU Wickets: ' + currentgame.getcpuWickets()),
                 ],
               ),
               // height: Sc_width*0.42,
               decoration: BoxDecoration(
                   border: Border.all(
-                color: Colors.white,
-                width: 2,
-              )),
+                    color: Colors.white,
+                    width: 2,
+                  )),
             ),
 
             Expanded(
@@ -59,9 +56,9 @@ class _BattingPageState extends State<BattingPage> {
                       margin: EdgeInsets.symmetric(horizontal: 8),
                       decoration: BoxDecoration(
                           border: Border.all(
-                        color: Colors.white,
-                        width: 2,
-                      )),
+                            color: Colors.white,
+                            width: 2,
+                          )),
                       child: Column(
                         children: [
                           BuildHeader(heading: 'YOUR CHOICES'),
@@ -104,28 +101,24 @@ class _BattingPageState extends State<BattingPage> {
 
   Widget createbtn(int imageno) {
     return RawMaterialButton(
+      child: Image.asset("images/$imageno.png", width: 50, height: 50),
+      onPressed: () {
+        setState(() {
+          if (currentgame.getcpuWickets() != '0') {
+            currentImg.setHand(imageno);
+            currentgame.setHands(currentImg);
+            currentgame.checkHandBowling();
+          } else {
+            print('GAME OVER');
+          }
+        });
+      },
       constraints: BoxConstraints.tightFor(
         width: 60.0,
         height: 60.0,
       ),
       shape: CircleBorder(),
       fillColor: Colors.white,
-      child: Image.asset("images/$imageno.png", width: 50, height: 50),
-      onPressed: () {
-        setState(() {
-          if (currentgame.getplayerWickets() != '0') {
-            currentImg.setHand(imageno);
-            currentgame.setHands(currentImg);
-            currentgame.checkHandBatting();
-          }
-          // ALL OUT
-          else {
-            print("All out")
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => BowlingPage()));
-          }
-        });
-      },
     );
   }
 }
