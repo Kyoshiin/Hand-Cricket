@@ -120,7 +120,7 @@ class _BattingPageState extends State<BattingPage> {
           }
           // ALL OUT
           else {
-            print("All out")
+            print("All out");
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => BowlingPage()));
           }
