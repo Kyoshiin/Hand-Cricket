@@ -6,6 +6,8 @@ import 'package:hand_cricket_flutter/components/HandArea.dart';
 import 'package:hand_cricket_flutter/components/HeadingArea.dart';
 import 'package:hand_cricket_flutter/constants.dart';
 
+import 'components/ScoreArea.dart';
+
 GameLogic currentgame = GameLogic();
 ImageHandler currentImg = ImageHandler();
 
@@ -17,27 +19,13 @@ class BowlingPage extends StatefulWidget {
 class _BowlingPageState extends State<BowlingPage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //Scoreboard
-            Container(
-              child: Column(
-                children: [
-                  Text('CPU Runs: ' + currentgame.getcpuRuns()),
-                  Text('CPU Wickets: ' + currentgame.getcpuWickets()),
-                ],
-              ),
-              // height: Sc_width*0.42,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 2,
-                  )),
-            ),
+            Scoreboard(currentgame),
 
             Expanded(
               flex: 5,
@@ -56,9 +44,9 @@ class _BowlingPageState extends State<BowlingPage> {
                       margin: EdgeInsets.symmetric(horizontal: 8),
                       decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.white,
-                            width: 2,
-                          )),
+                        color: Colors.white,
+                        width: 2,
+                      )),
                       child: Column(
                         children: [
                           BuildHeader(heading: 'YOUR CHOICES'),
@@ -101,10 +89,16 @@ class _BowlingPageState extends State<BowlingPage> {
 
   Widget createbtn(int imageno) {
     return RawMaterialButton(
+      constraints: BoxConstraints.tightFor(
+        width: 60.0,
+        height: 60.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: Colors.white,
       child: Image.asset("images/$imageno.png", width: 50, height: 50),
       onPressed: () {
         setState(() {
-          if (currentgame.getcpuWickets() != '0') {
+          if (currentgame.getcpuWickets() != '0' && currentgame.getScoreDiff()>=0) {
             currentImg.setHand(imageno);
             currentgame.setHands(currentImg);
             currentgame.checkHandBowling();
@@ -113,12 +107,6 @@ class _BowlingPageState extends State<BowlingPage> {
           }
         });
       },
-      constraints: BoxConstraints.tightFor(
-        width: 60.0,
-        height: 60.0,
-      ),
-      shape: CircleBorder(),
-      fillColor: Colors.white,
     );
   }
 }

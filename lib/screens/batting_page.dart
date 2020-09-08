@@ -5,6 +5,7 @@ import 'package:hand_cricket_flutter/bowling_page.dart';
 import 'package:hand_cricket_flutter/components/ImageHandler.dart';
 import 'package:hand_cricket_flutter/components/HandArea.dart';
 import 'package:hand_cricket_flutter/components/HeadingArea.dart';
+import 'package:hand_cricket_flutter/components/ScoreArea.dart';
 import 'package:hand_cricket_flutter/constants.dart';
 
 GameLogic currentgame = GameLogic();
@@ -27,20 +28,7 @@ class _BattingPageState extends State<BattingPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //Scoreboard
-            Container(
-              child: Column(
-                children: [
-                  Text('Runs: ' + currentgame.getplayerRuns()),
-                  Text('Wickets: ' + currentgame.getplayerWickets()),
-                ],
-              ),
-              // height: Sc_width*0.42,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                color: Colors.white,
-                width: 2,
-              )),
-            ),
+            Scoreboard(currentgame),
 
             Expanded(
               flex: 5,
@@ -129,3 +117,5 @@ class _BattingPageState extends State<BattingPage> {
     );
   }
 }
+
+

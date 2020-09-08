@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:hand_cricket_flutter/components/ImageHandler.dart';
 
 class GameLogic {
   static int _cpuWkts;
   static int _playerWkts = 0;
-  int _cpuRuns=0;
-  int _playerRuns = 0;
+  static int _cpuRuns=0;
+  static int _playerRuns = 0;
   int playerHand;
   int cpuHand;
 

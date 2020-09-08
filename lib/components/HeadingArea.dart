@@ -13,7 +13,7 @@ class BuildHeader extends StatelessWidget {
       color: Colors.brown,
       child: Padding(
         padding: EdgeInsets.all(kHeadpadding*Sc_height),
-        child: Text(heading,
+        child: Text(heading.toUpperCase(),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: Sc_height*0.022,
