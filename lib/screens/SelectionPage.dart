@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hand_cricket_flutter/Game_Logic.dart';
+import 'package:hand_cricket_flutter/bowling_page.dart';
 import 'package:hand_cricket_flutter/components/SelectionButton.dart';
 import 'package:hand_cricket_flutter/constants.dart';
 import 'package:hand_cricket_flutter/screens/batting_page.dart';
@@ -14,6 +15,10 @@ class _SelectionPageState extends State<SelectionPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    Sc_width = MediaQuery.of(context).size.width;
+    Sc_height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -34,7 +39,13 @@ class _SelectionPageState extends State<SelectionPage> {
                     Navigator.push(
                         context, MaterialPageRoute(builder: (context) => BattingPage()));
                   },),
-                  //SelecButton(ButtonName: 'BOWL'),
+                  SelecButton(ButtonName: 'BOWL', ButtonAction: (){
+
+                    GameLogic().setWickets(wickets);
+                    //going to next screen
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => BowlingPage()));
+                  },),
                 ],
               ),
               Column(
@@ -68,7 +79,7 @@ class _SelectionPageState extends State<SelectionPage> {
                       child: Slider(
                         value: wickets.toDouble(),
                         min: 1.0,
-                        max: 6.0,
+                        max: 11.0,
                         onChanged: (double newValue) {
                           setState(() {
                             wickets = newValue.floor();

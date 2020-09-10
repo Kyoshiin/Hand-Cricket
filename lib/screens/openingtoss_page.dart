@@ -14,8 +14,6 @@ class _ChooseTossState extends State<ChooseToss> {
   @override
   Widget build(BuildContext context) {
 
-    Sc_width = MediaQuery.of(context).size.width;
-    Sc_height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SafeArea(

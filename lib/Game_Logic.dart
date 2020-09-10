@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hand_cricket_flutter/components/ImageHandler.dart';
 
 class GameLogic {
-  static int _cpuWkts;
+  static int _cpuWkts=0;
   static int _playerWkts = 0;
   static int _cpuRuns=0;
   static int _playerRuns = 0;
@@ -17,8 +18,8 @@ class GameLogic {
     cpuHand = img.getCpuhand();
   }
 
-  int getScoreDiff() {
-    return _playerRuns - _cpuRuns;
+  int getScoreDiff({@required String batting}) {
+    return batting =='player'? _playerRuns - _cpuRuns : _cpuRuns - _playerRuns;
   }
 
   String getcpuWickets() {
@@ -37,21 +38,27 @@ class GameLogic {
     return _playerRuns.toString();
   }
 
-  void checkHandBatting() {
+  bool checkHandBatting() { //return true for fall of wickets
     if (_playerWkts > 0) {
       if (playerHand != cpuHand)
         _playerRuns += playerHand;
-      else
+      else{
         _playerWkts--;
+      return true;}
     }
+    return false;
   }
 
-  void checkHandBowling() {
-    if (_cpuWkts > 0 || getScoreDiff() > 0) {
-      if (playerHand != cpuHand)
-        _cpuRuns += cpuHand;
-      else
+  bool checkHandBowling() {
+
+    print("CPU RUNS "+_cpuRuns.toString());
+    if (_cpuWkts > 0) {
+      if (playerHand != cpuHand){
+        _cpuRuns += cpuHand;}
+      else{
         _cpuWkts--;
+      return true;}
     }
+    return false;
   }
 }

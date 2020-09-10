@@ -7,6 +7,7 @@ import 'package:hand_cricket_flutter/components/HandArea.dart';
 import 'package:hand_cricket_flutter/components/HeadingArea.dart';
 import 'package:hand_cricket_flutter/components/ScoreArea.dart';
 import 'package:hand_cricket_flutter/constants.dart';
+import 'package:hand_cricket_flutter/screens/overlay_fallofWkts.dart';
 
 GameLogic currentgame = GameLogic();
 ImageHandler currentImg = ImageHandler();
@@ -74,6 +75,7 @@ class _BattingPageState extends State<BattingPage> {
                               children: [
                                 createbtn(5),
                                 createbtn(6),
+
                               ],
                             ),
                           )
@@ -101,16 +103,30 @@ class _BattingPageState extends State<BattingPage> {
       child: Image.asset("images/$imageno.png", width: 50, height: 50),
       onPressed: () {
         setState(() {
-          if (currentgame.getplayerWickets() != '0') {
+          if (currentgame.getplayerWickets() != '0' &&
+              currentgame.getScoreDiff(batting: 'cpu') >= 0) {
             currentImg.setHand(imageno);
             currentgame.setHands(currentImg);
-            currentgame.checkHandBatting();
+            if(currentgame.checkHandBatting()){
+
+              showGeneralDialog(
+                context: context,// background color
+                barrierDismissible: false, // should dialog be dismissed when tapped outside
+                barrierLabel: "Dialog", // label for barrier
+                transitionDuration: Duration(milliseconds: 10), // how long it takes to popup dialog after button click
+                pageBuilder: (BuildContext context, _, __) =>
+                    FallofWicketScreen());
+                }
+
+
           }
           // ALL OUT
           else {
-            print("All out");
+            if(currentgame.getcpuWickets()!= '0'){
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => BowlingPage()));
+          }
+            print("All out");
           }
         });
       },

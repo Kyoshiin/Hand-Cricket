@@ -5,6 +5,8 @@ import 'package:hand_cricket_flutter/components/ImageHandler.dart';
 import 'package:hand_cricket_flutter/components/HandArea.dart';
 import 'package:hand_cricket_flutter/components/HeadingArea.dart';
 import 'package:hand_cricket_flutter/constants.dart';
+import 'package:hand_cricket_flutter/screens/batting_page.dart';
+import 'package:hand_cricket_flutter/screens/overlay_fallofWkts.dart';
 
 import 'components/ScoreArea.dart';
 
@@ -49,7 +51,7 @@ class _BowlingPageState extends State<BowlingPage> {
                       )),
                       child: Column(
                         children: [
-                          BuildHeader(heading: 'YOUR CHOICES'),
+                          BuildHeader(heading: 'YOUR CHOICES FOR BOWLING'),
                           Padding(
                             padding: EdgeInsets.all(Sc_width * kItempadding),
                             child: Row(
@@ -98,11 +100,29 @@ class _BowlingPageState extends State<BowlingPage> {
       child: Image.asset("images/$imageno.png", width: 50, height: 50),
       onPressed: () {
         setState(() {
-          if (currentgame.getcpuWickets() != '0' && currentgame.getScoreDiff()>=0) {
+          if (currentgame.getcpuWickets() != '0' &&
+              currentgame.getScoreDiff(batting: 'cpu') >= 0) {
+
             currentImg.setHand(imageno);
             currentgame.setHands(currentImg);
-            currentgame.checkHandBowling();
+            if (currentgame.checkHandBowling()) {
+              print('CPU OUT');
+              showGeneralDialog(
+                  context: context,
+                  barrierDismissible:
+                      false,
+                  barrierLabel: "Dialog",
+                  transitionDuration: Duration(
+                      milliseconds:
+                          10),
+                  pageBuilder: (BuildContext context, _, __) =>
+                      FallofWicketScreen());
+            }
           } else {
+            if(currentgame.getplayerWickets()!= '0'){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BattingPage()));
+            }
             print('GAME OVER');
           }
         });

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hand_cricket_flutter/screens/SelectionPage.dart';
 import 'package:hand_cricket_flutter/screens/openingtoss_page.dart';
 import 'package:hand_cricket_flutter/screens/toss_page.dart';
 import 'constants.dart';
@@ -19,8 +20,7 @@ class HandCricket extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/' : (context) => ChooseToss(),
-        '/t' : (context) => TossPage(),
+        '/' : (context) => SelectionPage()
       },
     );
   }
