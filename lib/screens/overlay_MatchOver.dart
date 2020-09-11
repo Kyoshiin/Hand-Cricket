@@ -18,13 +18,23 @@ class MatchOverScreen extends StatelessWidget {
               MaterialPageRoute(builder: (context) => SelectionPage()));
         },
         child: SizedBox.expand(
-          child: Center(
-            child: Text(
-              'MATCH OVER'.toUpperCase(),
-              style: TextStyle(
-                fontSize: 40
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'MATCH OVER'.toUpperCase(),
+                style: TextStyle(
+                  fontSize: 40
+                ),
               ),
-            ),
+              Text(
+                GameLogic().getMatchResults(),
+                style: TextStyle(
+                    fontSize: 30
+                ),
+              ),
+            ],
           ),
         ),
       ),
