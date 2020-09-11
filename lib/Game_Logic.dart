@@ -6,8 +6,13 @@ class GameLogic {
   static int _playerWkts = 0;
   static int _cpuRuns=0;
   static int _playerRuns = 0;
+  static String _choice;
   int playerHand;
   int cpuHand;
+
+  void setPLayerChoice(String s){
+    _choice =s;
+  }
 
   void setWickets(int w) {
     _cpuWkts = _playerWkts = w;
@@ -18,8 +23,8 @@ class GameLogic {
     cpuHand = img.getCpuhand();
   }
 
-  int getScoreDiff({@required String batting}) {
-    return batting =='player'? _playerRuns - _cpuRuns : _cpuRuns - _playerRuns;
+  int getScoreDiff() {
+    return _choice =='bat'? _playerRuns - _cpuRuns : _cpuRuns - _playerRuns;
   }
 
   String getcpuWickets() {
@@ -51,7 +56,6 @@ class GameLogic {
 
   bool checkHandBowling() {
 
-    print("CPU RUNS "+_cpuRuns.toString());
     if (_cpuWkts > 0) {
       if (playerHand != cpuHand){
         _cpuRuns += cpuHand;}
@@ -60,5 +64,12 @@ class GameLogic {
       return true;}
     }
     return false;
+  }
+
+  void reset(){
+    _cpuWkts=0;
+    _playerWkts = 0;
+    _cpuRuns=0;
+    _playerRuns = 0;
   }
 }
