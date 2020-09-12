@@ -9,8 +9,6 @@ class buildHand extends StatelessWidget {
   final String heading;
   final int Handno;
 
-  double ImgSize = 0.23*Sc_width;
-
   @override
   Widget build(BuildContext context) {
     return Container(

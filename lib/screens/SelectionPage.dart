@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hand_cricket_flutter/Game_Logic.dart';
-import 'package:hand_cricket_flutter/bowling_page.dart';
 import 'package:hand_cricket_flutter/components/SelectionButton.dart';
+import 'package:hand_cricket_flutter/components/icon_content.dart';
 import 'package:hand_cricket_flutter/constants.dart';
 import 'package:hand_cricket_flutter/screens/batting_page.dart';
+import 'bowling_page.dart';
 
 class SelectionPage extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class SelectionPage extends StatefulWidget {
 
 class _SelectionPageState extends State<SelectionPage> {
   int wickets = 3;
+  String choice;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class _SelectionPageState extends State<SelectionPage> {
         body: SafeArea(
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Time to choose'.toUpperCase(),
@@ -54,28 +56,22 @@ class _SelectionPageState extends State<SelectionPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SelecButton(
-                      ButtonName: 'BAT',
+                      icondetails: IconContent(label: 'bat'),
                       ButtonAction: () {
-                        tmpGL.setPLayerChoice('bat');
-                        tmpGL.setWickets(wickets);
-                        //going to next screen
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BattingPage()));
+                        setState(() {
+                          choice = 'bat';
+                        });
                       },
+                      color: choice == 'bat' ? active : inactive,
                     ),
                     SelecButton(
-                      ButtonName: 'BOWL',
+                      icondetails: IconContent(label: 'bowl'),
                       ButtonAction: () {
-                        tmpGL.setPLayerChoice('bowl');
-                        tmpGL.setWickets(wickets);
-                        //going to next screen
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BowlingPage()));
+                        setState(() {
+                          choice = 'bowl';
+                        });
                       },
+                      color: choice == 'bowl' ? active : inactive,
                     ),
                   ],
                 ),
@@ -122,6 +118,21 @@ class _SelectionPageState extends State<SelectionPage> {
                     ),
                   ],
                 ),
+                RawMaterialButton(
+                  onPressed: () {
+                    tmpGL.setPLayerChoice(choice);
+                    tmpGL.setWickets(wickets);
+                    Navigator.pushNamed(
+                        context, '/$choice'); //moving to selected page
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    color: Colors.red,
+                    alignment: Alignment.center,
+                    child: Text('DONE'),
+                  ),
+                )
               ],
             ),
           ),

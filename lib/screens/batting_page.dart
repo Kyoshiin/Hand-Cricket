@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hand_cricket_flutter/Game_Logic.dart';
-import 'package:hand_cricket_flutter/bowling_page.dart';
 import 'package:hand_cricket_flutter/components/ImageHandler.dart';
 import 'package:hand_cricket_flutter/components/HandArea.dart';
 import 'package:hand_cricket_flutter/components/HeadingArea.dart';
@@ -10,6 +9,7 @@ import 'package:hand_cricket_flutter/components/reset_dialog.dart';
 import 'package:hand_cricket_flutter/constants.dart';
 import 'package:hand_cricket_flutter/screens/overlay_fallofWkts.dart';
 
+import 'bowling_page.dart';
 import 'overlay_MatchOver.dart';
 
 GameLogic currentgame = GameLogic();

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hand_cricket_flutter/screens/SelectionPage.dart';
-import 'package:hand_cricket_flutter/screens/openingtoss_page.dart';
-import 'package:hand_cricket_flutter/screens/toss_page.dart';
-import 'constants.dart';
+import 'package:hand_cricket_flutter/screens/batting_page.dart';
+import 'package:hand_cricket_flutter/screens/bowling_page.dart';
 
 void main() {
   runApp(HandCricket());
@@ -20,7 +19,9 @@ class HandCricket extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/' : (context) => SelectionPage()
+        '/' : (context) => SelectionPage(),
+        '/bat':(context) => BattingPage(),
+        '/bowl':(context) =>BowlingPage()
       },
     );
   }

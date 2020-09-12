@@ -9,8 +9,8 @@ import 'package:hand_cricket_flutter/screens/batting_page.dart';
 import 'package:hand_cricket_flutter/screens/overlay_MatchOver.dart';
 import 'package:hand_cricket_flutter/screens/overlay_fallofWkts.dart';
 
-import 'components/ScoreArea.dart';
-import 'components/reset_dialog.dart';
+import '../components/ScoreArea.dart';
+import '../components/reset_dialog.dart';
 
 GameLogic currentgame = GameLogic();
 ImageHandler currentImg = ImageHandler();
