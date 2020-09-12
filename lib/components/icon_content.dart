@@ -18,7 +18,7 @@ class IconContent extends StatelessWidget {
         Text(
           label.toUpperCase(),
           style: TextStyle(
-            fontSize: 30,
+            fontSize: 24,
           ),
         )
       ],

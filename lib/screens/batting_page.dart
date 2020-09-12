@@ -8,7 +8,6 @@ import 'package:hand_cricket_flutter/components/ScoreArea.dart';
 import 'package:hand_cricket_flutter/components/reset_dialog.dart';
 import 'package:hand_cricket_flutter/constants.dart';
 import 'package:hand_cricket_flutter/screens/overlay_fallofWkts.dart';
-
 import 'bowling_page.dart';
 import 'overlay_MatchOver.dart';
 
@@ -37,7 +36,7 @@ class _BattingPageState extends State<BattingPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Scoreboard
-              Scoreboard(currentgame),
+              Scoreboard('bat',currentgame),
 
               Expanded(
                 flex: 5,
@@ -53,7 +52,6 @@ class _BattingPageState extends State<BattingPage> {
                       //3rd row
                       Container(
                         width: Sc_width * 0.8,
-                        margin: EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                             border: Border.all(
                           color: Colors.white,
@@ -61,7 +59,7 @@ class _BattingPageState extends State<BattingPage> {
                         )),
                         child: Column(
                           children: [
-                            BuildHeader(heading: 'YOUR CHOICES'),
+                            BuildHeader(heading: 'YOUR CHOICES FOR BATTING'),
                             Padding(
                               padding: EdgeInsets.all(Sc_width * kItempadding),
                               child: Row(
@@ -71,7 +69,6 @@ class _BattingPageState extends State<BattingPage> {
                                   createbtn(1),
                                   createbtn(2),
                                   createbtn(3),
-                                  createbtn(4),
                                 ],
                               ),
                             ),
@@ -81,8 +78,8 @@ class _BattingPageState extends State<BattingPage> {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
+                                  createbtn(4),
                                   createbtn(5),
                                   createbtn(6),
                                 ],

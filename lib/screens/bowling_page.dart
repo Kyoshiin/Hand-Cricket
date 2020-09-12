@@ -34,7 +34,7 @@ class _BowlingPageState extends State<BowlingPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Scoreboard
-              Scoreboard(currentgame),
+              Scoreboard('bowl',currentgame),
 
               Expanded(
                 flex: 5,
@@ -67,7 +67,6 @@ class _BowlingPageState extends State<BowlingPage> {
                                   createbtn(1),
                                   createbtn(2),
                                   createbtn(3),
-                                  createbtn(4),
                                 ],
                               ),
                             ),
@@ -76,8 +75,8 @@ class _BowlingPageState extends State<BowlingPage> {
                                   bottom: Sc_width * kItempadding),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
+                                  createbtn(4),
                                   createbtn(5),
                                   createbtn(6),
                                 ],
