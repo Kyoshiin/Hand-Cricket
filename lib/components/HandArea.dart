@@ -24,13 +24,10 @@ class buildHand extends StatelessWidget {
 
           BuildHeader(heading:heading),
 
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: Sc_width*0.02),
-            child: CircleAvatar(
-              radius: 0.14 * Sc_width,
-              backgroundColor: Colors.white,
-              child: Image.asset('images/$Handno.png',height: ImgSize),
-            ),
+          CircleAvatar(
+            radius: 0.14 * Sc_width,
+            backgroundColor: Colors.white,
+            child: Image.asset('images/$Handno.png',height: ImgSize),
           ),
         ],
       ),

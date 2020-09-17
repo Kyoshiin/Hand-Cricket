@@ -16,6 +16,7 @@ class SelecButton extends StatelessWidget {
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width * 0.4,
       child: RawMaterialButton(
+        splashColor: Colors.transparent,
         onPressed: ButtonAction,
         child: Padding(
           padding: EdgeInsets.all(8),

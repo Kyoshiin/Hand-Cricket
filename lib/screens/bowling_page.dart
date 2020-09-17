@@ -36,57 +36,61 @@ class _BowlingPageState extends State<BowlingPage> {
 
               Expanded(
                 flex: 10,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      buildHand(
-                          heading: 'CPU HAND', Handno: currentImg.getCpuhand()),
-                      buildHand(
-                          heading: 'PLAYER HAND',
-                          Handno: currentImg.getPlayerhand()),
-                      //3rd row
-                      Container(
-                        width: Sc_width * 0.8,
-                        margin: EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                          color: Colors.white,
-                          width: 2,
-                        )),
-                        child: Column(
-                          children: [
-                            BuildHeader(heading: 'YOUR CHOICES FOR BOWLING'),
-                            Padding(
-                              padding: EdgeInsets.all(Sc_width * kItempadding),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  createbtn(1),
-                                  createbtn(2),
-                                  createbtn(3),
-                                ],
-                              ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        buildHand(
+                            heading: 'CPU HAND', Handno: currentImg.getCpuhand()),
+
+                        buildHand(
+                            heading: 'PLAYER HAND',
+                            Handno: currentImg.getPlayerhand()),
+                      ],
+                    ),
+                    //3rd row
+                    Container(
+                      width: Sc_width * 0.8,
+                      margin: EdgeInsets.symmetric(horizontal: 8),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                        color: Colors.white,
+                        width: 2,
+                      )),
+                      child: Column(
+                        children: [
+                          BuildHeader(heading: 'YOUR CHOICES FOR BOWLING'),
+                          Padding(
+                            padding: EdgeInsets.all(Sc_width * kItempadding),
+                            child: Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
+                              children: [
+                                createbtn(1),
+                                createbtn(2),
+                                createbtn(3),
+                              ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: Sc_width * kItempadding),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  createbtn(4),
-                                  createbtn(5),
-                                  createbtn(6),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                bottom: Sc_width * kItempadding),
+                            child: Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
+                              children: [
+                                createbtn(4),
+                                createbtn(5),
+                                createbtn(6),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],
