@@ -1,7 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hand_cricket_flutter/Game_Logic.dart';
+import 'package:hand_cricket_flutter/components/enumPage.dart';
+import 'package:hand_cricket_flutter/screens/change_action_page.dart';
 
 class FallofWicketScreen extends StatelessWidget {
+
+  GameLogic currentgame = GameLogic();
+  final Pg pageName;
+
+  FallofWicketScreen({@required this.pageName});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,7 +18,27 @@ class FallofWicketScreen extends StatelessWidget {
       body: RawMaterialButton(
         splashColor: Colors.transparent,
         onPressed: () {
-          Navigator.pop(context);
+          if ((currentgame.getplayerWickets() == '0' &&
+              currentgame.getcpuWickets() == '0') ||
+              currentgame.getScoreDiff() < 0) {
+            Navigator.pop(context);
+            print('Moving to MOS from FOWS');
+            Navigator.pushNamed(context, '/MOS');
+          }
+          else if (currentgame.getplayerWickets() == '0' &&
+              currentgame.getcpuWickets() != '0' && pageName==Pg.BattingPage) {
+            Navigator.pop(context);
+            print('Moving to bowling from FOWS');
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ChangeAction(Pg.BattingPage)));
+          }
+          else if (currentgame.getplayerWickets() != '0' &&
+              currentgame.getcpuWickets() == '0' && pageName==Pg.BowlingPage) {
+            Navigator.pop(context);
+            print('Moving to bat from FOWS');
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ChangeAction(Pg.BowlingPage)));
+          }
+          else
+            Navigator.pop(context);
         },
         child: SizedBox.expand(
           child: Center(
@@ -29,4 +58,5 @@ class FallofWicketScreen extends StatelessWidget {
       ),
     );
   }
+
 }

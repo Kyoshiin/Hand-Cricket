@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hand_cricket_flutter/Game_Logic.dart';
 import 'package:hand_cricket_flutter/components/SelectionButton.dart';
+import 'package:hand_cricket_flutter/components/exit_dialog.dart';
 import 'package:hand_cricket_flutter/components/icon_content.dart';
 import 'package:hand_cricket_flutter/constants.dart';
-import 'package:hand_cricket_flutter/screens/batting_page.dart';
-import 'bowling_page.dart';
 
 class SelectionPage extends StatefulWidget {
   @override
@@ -25,22 +24,7 @@ class _SelectionPageState extends State<SelectionPage> {
     return WillPopScope(
       onWillPop: () => showDialog<bool>(
         context: context,
-        builder: (c) => AlertDialog(
-          title: Text('Warning'),
-          content: Text('Do you really want to exit?'),
-          actions: [
-            FlatButton(
-                child: Text('Yes'),
-                onPressed: () {
-                  Navigator.pop(c, true);
-                  SystemNavigator.pop();
-                }),
-            FlatButton(
-              child: Text('No'),
-              onPressed: () => Navigator.pop(c, false),
-            ),
-          ],
-        ),
+        builder: (c) => ExitAlertDialog(context),
       ),
       child: Scaffold(
         body: SafeArea(
@@ -141,3 +125,5 @@ class _SelectionPageState extends State<SelectionPage> {
     );
   }
 }
+
+

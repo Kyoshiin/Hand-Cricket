@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hand_cricket_flutter/components/ImageHandler.dart';
+import 'package:hand_cricket_flutter/components/enumPage.dart';
 
 class GameLogic {
   static int _cpuWkts = 0;
@@ -11,6 +13,11 @@ class GameLogic {
 
   void setPLayerChoice(String s) {
     _choice = s;
+  }
+
+  String getNextAction() {
+    String s = 'Get ready to ';
+    return s + (_choice == 'bat' ? 'bowl' : 'bat');
   }
 
   void setWickets(int w) {
@@ -79,19 +86,55 @@ class GameLogic {
     if (_choice == 'bat') {
       //if player chose to bat first
       if (_playerRuns > _cpuRuns)
-        return 'You won by ' + getScoreDiff().abs().toString() + ' runs!';
+        return 'You won by ' + getScoreDiff().abs().toString() + ' run(s)!';
       else if (_playerRuns == _cpuRuns)
         return 'Match was a tie!';
       else
-        return 'Cpu won by ' + getcpuWickets().toString() + ' wickets!';
+        return 'Cpu won by $_cpuWkts wicket(s)!';
     } else {
       // if player chose to bowl first
       if (_playerRuns < _cpuRuns)
-        return 'Cpu won by ' + getScoreDiff().abs().toString() + ' runs!';
+        return 'Cpu won by ' + getScoreDiff().abs().toString() + ' run(s)!';
       else if (_playerRuns == _cpuRuns)
         return 'Match was a tie!';
       else
-        return 'You won by ' + getplayerWickets().toString() + ' wicket(s)!';
+        return 'You won by $_playerWkts wicket(s)!';
+    }
+  }
+
+  String getEndofTurnComments(Pg CallingPage) {
+    if (_choice == 'bat') {
+      //if player chose to bat first
+      if (CallingPage == Pg.BattingPage) //getting called page name
+        return 'Cpu needs ' +
+            (getScoreDiff() + 1).toString() +
+            ' runs to win from $_cpuWkts wicket(s)';
+    } else {
+      // if player chose to bowl first
+      if (CallingPage == Pg.BowlingPage) //getting called page name
+        return 'You need ' +
+            (getScoreDiff() + 1).toString() +
+            ' runs to win from $_playerWkts wicket(s)';
+    }
+  }
+
+  String getMatchComments(Pg CallingPage) {
+    if (_choice == 'bat') {
+      //if player chose to bat first
+      if (CallingPage == Pg.BattingPage) //getting called page name
+        return 'Your score is $_playerRuns for $_playerWkts wicket(s)';
+      else
+        return 'Cpu needs ' +
+            (getScoreDiff() + 1).toString() +
+            ' runs to win from $_cpuWkts wicket(s)';
+    } else {
+      // if player chose to bowl first
+      if (CallingPage == Pg.BowlingPage) //getting called page name
+        return 'Cpu score is $_cpuRuns for $_cpuWkts wicket(s)';
+      else
+        return 'You need ' +
+            (getScoreDiff() + 1).toString() +
+            ' runs to win from $_playerWkts wicket(s)';
     }
   }
 }

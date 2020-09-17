@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:hand_cricket_flutter/Game_Logic.dart';
 import '../constants.dart';
+import 'enumPage.dart';
 
 class Scoreboard extends StatelessWidget {
-  Scoreboard(@required this.isPlayer, @required this.currentgame);
+  Scoreboard(@required this.isPlayer, @required this.Callingcontext);
 
-  final GameLogic currentgame;
+  final GameLogic currentgame = GameLogic();
   final String isPlayer;
+  final Pg Callingcontext;
   double ScBrdIcSize = 20;
 
   @override
   Widget build(BuildContext context) {
     Image cpuActionIcon;
     Image playerActionIcon;
+
     Image batIcon = Image.asset('images/ic_bat.png',
         height: ScBrdIcSize, width: ScBrdIcSize);
     Image bowlIcon = Image.asset('images/ic_bowl.png',
@@ -25,24 +28,20 @@ class Scoreboard extends StatelessWidget {
       cpuActionIcon = batIcon;
       playerActionIcon = bowlIcon;
     }
-
     return Container(
-      margin: EdgeInsets.all(10),
-      width: Sc_width * 0.3,
-      height: Sc_width * 0.18,
       decoration: BoxDecoration(
           border: Border.all(
         color: Colors.white,
-        width: 2,
+        width: 1,
       )),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            alignment: Alignment.center,
-            color: Colors.red,
-            child: Padding(
-              padding: EdgeInsets.all(0.001 * Sc_height),
+          Expanded(
+            //score
+            child: Container(
+              alignment: Alignment.center,
+              color: Colors.red,
               child: Text(
                 'score'.toUpperCase(),
                 style: TextStyle(
@@ -52,30 +51,47 @@ class Scoreboard extends StatelessWidget {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              cpuActionIcon,
-              Text("Cpu:"),
-              Text(currentgame.getcpuRuns() +
-                  '/' +
-                  currentgame.getcpuWickets())
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 6),
+          Expanded(
+            flex: 2,
+            //score details
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                playerActionIcon,
-                Text("Player:"),
-                Text(
-                  currentgame.getplayerRuns() +
-                      '/' +
-                      currentgame.getplayerWickets(),
+                Row(
+                  children: [
+                    cpuActionIcon, //current choice icon
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Cpu: "),
+                    Text(currentgame.getcpuRuns() +
+                        '/' +
+                        currentgame.getcpuWickets())
+                  ],
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Row(
+                  children: [
+                    playerActionIcon, //current choice icon
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Player: "),
+                    Text(
+                      currentgame.getplayerRuns() +
+                          '/' +
+                          currentgame.getplayerWickets(),
+                    ),
+                  ],
                 ),
               ],
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 6),
+            child: Text(currentgame.getMatchComments(Callingcontext)),
           ),
         ],
       ),

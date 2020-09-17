@@ -15,8 +15,8 @@ class SelecButton extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width * 0.4,
-      child: GestureDetector(
-        onTap: ButtonAction,
+      child: RawMaterialButton(
+        onPressed: ButtonAction,
         child: Padding(
           padding: EdgeInsets.all(8),
           child: icondetails,

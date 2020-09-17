@@ -15,7 +15,7 @@ class ResetAlertDialog extends StatelessWidget {
           child: Text('Yes'),
           onPressed: () {
             GameLogic().reset();
-            Navigator.pop(c, true);
+            Navigator.pushNamed(context, '/');
           },
         ),
         FlatButton(

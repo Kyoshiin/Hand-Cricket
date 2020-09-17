@@ -8,8 +8,8 @@ import 'package:hand_cricket_flutter/components/ScoreArea.dart';
 import 'package:hand_cricket_flutter/components/reset_dialog.dart';
 import 'package:hand_cricket_flutter/constants.dart';
 import 'package:hand_cricket_flutter/screens/overlay_fallofWkts.dart';
-import 'bowling_page.dart';
-import 'overlay_MatchOver.dart';
+
+import 'package:hand_cricket_flutter/components/enumPage.dart';
 
 GameLogic currentgame = GameLogic();
 ImageHandler currentImg = ImageHandler();
@@ -33,13 +33,12 @@ class _BattingPageState extends State<BattingPage> {
       child: Scaffold(
         body: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Scoreboard
-              Scoreboard('bat',currentgame),
+              Expanded(child: Scoreboard('bat', Pg.BattingPage)),
 
               Expanded(
-                flex: 5,
+                flex: 10,
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -108,39 +107,36 @@ class _BattingPageState extends State<BattingPage> {
       shape: CircleBorder(),
       fillColor: Colors.white,
       child: Image.asset("images/$imageno.png", width: 50, height: 50),
+
+      //WORKING OF BUTTON
       onPressed: () {
         setState(() {
           if (currentgame.getplayerWickets() != '0' &&
               currentgame.getScoreDiff() >= 0) {
             currentImg.setHand(imageno);
+
             currentgame.setHands(currentImg);
             if (currentgame.checkHandBatting()) {
-              showGeneralDialog(
-                  context: context, // background color
-                  barrierDismissible:
-                      false, // should dialog be dismissed when tapped outside
-                  barrierLabel: "Dialog", // label for barrier
-                  transitionDuration: Duration(
-                      milliseconds:
-                          10), // how long it takes to popup dialog after button click
-                  pageBuilder: (BuildContext context, _, __) =>
-                      FallofWicketScreen());
-            }
-          }
-          // ALL OUT
-          else {
-            if (currentgame.getcpuWickets() != '0') {
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => BowlingPage()));
-            } else {
+              //getting if wicket has falled
               showGeneralDialog(
                   context: context,
+                  // background color
                   barrierDismissible: false,
+                  // should dialog be dismissed when tapped outside
                   barrierLabel: "Dialog",
+                  // label for barrier
                   transitionDuration: Duration(milliseconds: 10),
+                  // how long it takes to popup dialog after button click
                   pageBuilder: (BuildContext context, _, __) =>
-                      MatchOverScreen());
+                      FallofWicketScreen(
+                        pageName: Pg.BattingPage,
+                      ));
+            }
+            //condi to end match if target reached
+            if (currentgame.getScoreDiff() < 0) {
+              print('Moving to MOS from battingpage');
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/MOS');
             }
           }
         });
@@ -148,5 +144,3 @@ class _BattingPageState extends State<BattingPage> {
     );
   }
 }
-
-
