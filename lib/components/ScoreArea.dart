@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hand_cricket_flutter/Game_Logic.dart';
 import '../constants.dart';
@@ -37,61 +38,67 @@ class Scoreboard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            //score
-            child: Container(
-              alignment: Alignment.center,
-              color: Colors.red,
-              child: Text(
-                'score'.toUpperCase(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: Sc_height * 0.014,
-                ),
+          Container(
+            alignment: Alignment.center,
+            color: Colors.red,
+            child: Text(
+              'score'.toUpperCase(),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: Sc_height * 0.02,
               ),
             ),
           ),
-          Expanded(
-            flex: 2,
-            //score details
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    cpuActionIcon, //current choice icon
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text("Cpu: "),
-                    Text(currentgame.getcpuRuns() +
+
+          //display score area
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  playerActionIcon, //current choice icon
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    "Player: ",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    currentgame.getplayerRuns() +
                         '/' +
-                        currentgame.getcpuWickets())
-                  ],
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Row(
-                  children: [
-                    playerActionIcon, //current choice icon
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text("Player: "),
-                    Text(
-                      currentgame.getplayerRuns() +
-                          '/' +
-                          currentgame.getplayerWickets(),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                        currentgame.getplayerWickets(),
+                    style: ScoreTextstyle
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Row(
+                children: [
+                  Text("Cpu: ",
+                  style: NameTextstyle,),
+                  Text(currentgame.getcpuRuns() +
+                      '/' +
+                      currentgame.getcpuWickets(),
+                  style: ScoreTextstyle,),
+
+                  SizedBox(
+                    width: 5,
+                  ),
+
+                  cpuActionIcon, //current choice icon
+                ],
+              ),
+            ],
           ),
+
+          //comment section
           Padding(
             padding: EdgeInsets.only(bottom: 6),
-            child: Text(currentgame.getMatchComments(Callingcontext)),
+            child: Text(currentgame.getMatchComments(Callingcontext),
+            style: NameTextstyle,),
           ),
         ],
       ),

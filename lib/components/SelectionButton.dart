@@ -1,14 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hand_cricket_flutter/components/icon_content.dart';
-import '../constants.dart';
 
+//USED IN SELECTION PAGE
 class SelecButton extends StatelessWidget {
   SelecButton({@required this.icondetails,@required this.ButtonAction, @required this.color});
 
   final IconContent icondetails;
   final Function ButtonAction;
-  final Color color;
+  final Color color;     //to set the active colour
 
   @override
   Widget build(BuildContext context) {

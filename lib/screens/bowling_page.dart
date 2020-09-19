@@ -13,7 +13,6 @@ import '../components/reset_dialog.dart';
 GameLogic currentgame = GameLogic();
 ImageHandler currentImg = ImageHandler();
 
-
 class BowlingPage extends StatefulWidget {
   @override
   _BowlingPageState createState() => _BowlingPageState();
@@ -32,22 +31,27 @@ class _BowlingPageState extends State<BowlingPage> {
           child: Column(
             children: [
               //Scoreboard
-              Expanded(child: Scoreboard('bowl', Pg.BowlingPage)),
+              Expanded(
+                  child: Padding(
+                padding: ScoreBoardPadding,
+                child: Scoreboard('bowl', Pg.BowlingPage),
+              )),
 
               Expanded(
-                flex: 10,
+                flex: 5,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    //display hands
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        buildHand(
-                            heading: 'CPU HAND', Handno: currentImg.getCpuhand()),
-
                         buildHand(
                             heading: 'PLAYER HAND',
                             Handno: currentImg.getPlayerhand()),
+                        buildHand(
+                            heading: 'CPU HAND',
+                            Handno: currentImg.getCpuhand()),
                       ],
                     ),
                     //3rd row
@@ -65,8 +69,7 @@ class _BowlingPageState extends State<BowlingPage> {
                           Padding(
                             padding: EdgeInsets.all(Sc_width * kItempadding),
                             child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 createbtn(1),
                                 createbtn(2),
@@ -78,8 +81,7 @@ class _BowlingPageState extends State<BowlingPage> {
                             padding: EdgeInsets.only(
                                 bottom: Sc_width * kItempadding),
                             child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 createbtn(4),
                                 createbtn(5),
@@ -102,13 +104,17 @@ class _BowlingPageState extends State<BowlingPage> {
 
   Widget createbtn(int imageno) {
     return RawMaterialButton(
-      constraints: BoxConstraints.tightFor(
-        width: 60.0,
-        height: 60.0,
+
+      child: CircleAvatar(
+        radius: 0.085 * Sc_width,
+        backgroundColor: Colors.blue,       // for border
+        child: CircleAvatar(
+          radius: 0.075 * Sc_width,
+          backgroundColor: Colors.white,
+          child: Image.asset('images/$imageno.png',height: 50),
+        ),
       ),
-      shape: CircleBorder(),
-      fillColor: Colors.white,
-      child: Image.asset("images/$imageno.png", width: 50, height: 50),
+      //actions
       onPressed: () {
         setState(
           () {

@@ -14,21 +14,25 @@ class buildHand extends StatelessWidget {
     return Container(
       width: Sc_width*0.45,
       // height: Sc_width*0.42,
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.white,
-            width: 2, )
-      ),
+
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
 
-          BuildHeader(heading:heading),
-
           CircleAvatar(
-            radius: 0.14 * Sc_width,
-            backgroundColor: Colors.white,
-            child: Image.asset('images/$Handno.png',height: ImgSize),
+            radius: 0.16 * Sc_width,
+            backgroundColor: Colors.blue,       // for border
+            child: CircleAvatar(
+              radius: 0.14 * Sc_width,
+              backgroundColor: Colors.white,
+              child: Image.asset('images/$Handno.png',height: ImgSize),
+            ),
           ),
+
+          SizedBox(height: 6,),
+
+          BuildHeader(heading:heading),
         ],
       ),
     );

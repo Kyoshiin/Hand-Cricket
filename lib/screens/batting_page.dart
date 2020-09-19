@@ -35,22 +35,26 @@ class _BattingPageState extends State<BattingPage> {
           child: Column(
             children: [
               //Scoreboard
-              Expanded(child: Scoreboard('bat', Pg.BattingPage)),
+              Expanded(child: Padding(
+                padding: ScoreBoardPadding,
+                child: Scoreboard('bat', Pg.BattingPage),
+              )),
 
               Expanded(
-                flex: 6,
+                flex: 5,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    //display hands
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        buildHand(
-                            heading: 'CPU HAND', Handno: currentImg.getCpuhand()),
-
                         buildHand(
                             heading: 'PLAYER HAND',
                             Handno: currentImg.getPlayerhand()),
+
+                        buildHand(
+                            heading: 'CPU HAND', Handno: currentImg.getCpuhand()),
                       ],
                     ),
 
@@ -105,13 +109,15 @@ class _BattingPageState extends State<BattingPage> {
 
   Widget createbtn(int imageno) {
     return RawMaterialButton(
-      constraints: BoxConstraints.tightFor(
-        width: 60.0,
-        height: 60.0,
+      child: CircleAvatar(
+        radius: 0.085 * Sc_width,
+        backgroundColor: Colors.blue,       // for border
+        child: CircleAvatar(
+          radius: 0.075 * Sc_width,
+          backgroundColor: Colors.white,
+          child: Image.asset('images/$imageno.png',height: 50),
+        ),
       ),
-      shape: CircleBorder(),
-      fillColor: Colors.white,
-      child: Image.asset("images/$imageno.png", width: 50, height: 50),
 
       //WORKING OF BUTTON
       onPressed: () {
