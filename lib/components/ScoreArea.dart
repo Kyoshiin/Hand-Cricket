@@ -31,16 +31,29 @@ class Scoreboard extends StatelessWidget {
     }
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(
-        color: Colors.white,
-        width: 1,
-      )),
+        color: Colors.grey,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          border: Border.all(color: Colors.white, width: 2),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0,3)
+            )
+          ]),
+
+
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
+            decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+
             alignment: Alignment.center,
-            color: Colors.red,
             child: Text(
               'score'.toUpperCase(),
               style: TextStyle(

@@ -50,6 +50,8 @@ class FallofWicketScreen extends StatelessWidget {
             children: [
               Image.asset('images/out.png'),
 
+              SizedBox(height: 50,),
+
               Container(
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.white, width: 2),

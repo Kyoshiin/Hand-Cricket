@@ -25,7 +25,16 @@ class SelecButton extends StatelessWidget {
       ),
       decoration: BoxDecoration(
           color: color,
-          border: Border.all(color: Colors.white, width: 2)),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          border: Border.all(color: Colors.white, width: 2),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.2),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0,3)
+        )
+      ]),
     );
   }
 }
