@@ -66,28 +66,19 @@ class _BowlingPageState extends State<BowlingPage> {
                       child: Column(
                         children: [
                           BuildHeader(heading: 'YOUR CHOICES FOR BOWLING'),
-                          Padding(
-                            padding: EdgeInsets.all(Sc_width * kItempadding),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                createbtn(1),
-                                createbtn(2),
-                                createbtn(3),
-                              ],
-                            ),
+                          Row(
+                            children: [
+                              createbtn(1),
+                              createbtn(2),
+                              createbtn(3),
+                            ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                bottom: Sc_width * kItempadding),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                createbtn(4),
-                                createbtn(5),
-                                createbtn(6),
-                              ],
-                            ),
+                          Row(
+                            children: [
+                              createbtn(4),
+                              createbtn(5),
+                              createbtn(6),
+                            ],
                           )
                         ],
                       ),
@@ -105,15 +96,23 @@ class _BowlingPageState extends State<BowlingPage> {
   Widget createbtn(int imageno) {
     return RawMaterialButton(
 
-      child: CircleAvatar(
-        radius: 0.085 * Sc_width,
-        backgroundColor: Colors.blue,       // for border
-        child: CircleAvatar(
-          radius: 0.075 * Sc_width,
-          backgroundColor: Colors.white,
-          child: Image.asset('images/$imageno.png',height: 50),
+      child: Container(
+        decoration:
+        BoxDecoration(border: Border.all(color: Colors.white, width: 1)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 17.3, vertical: 15.3),
+          child: CircleAvatar(
+            radius: 0.085 * Sc_width,
+            backgroundColor: Colors.blue, // for border
+            child: CircleAvatar(
+              radius: 0.075 * Sc_width,
+              backgroundColor: Colors.white,
+              child: Image.asset('images/$imageno.png', height: 50),
+            ),
+          ),
         ),
       ),
+
       //actions
       onPressed: () {
         setState(

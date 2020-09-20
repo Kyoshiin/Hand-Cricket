@@ -35,7 +35,8 @@ class _BattingPageState extends State<BattingPage> {
           child: Column(
             children: [
               //Scoreboard
-              Expanded(child: Padding(
+              Expanded(
+                  child: Padding(
                 padding: ScoreBoardPadding,
                 child: Scoreboard('bat', Pg.BattingPage),
               )),
@@ -52,15 +53,16 @@ class _BattingPageState extends State<BattingPage> {
                         buildHand(
                             heading: 'PLAYER HAND',
                             Handno: currentImg.getPlayerhand()),
-
                         buildHand(
-                            heading: 'CPU HAND', Handno: currentImg.getCpuhand()),
+                            heading: 'CPU HAND',
+                            Handno: currentImg.getCpuhand()),
                       ],
                     ),
 
                     //3rd row
                     Container(
                       width: Sc_width * 0.8,
+                      height: Sc_width * 0.6,
                       decoration: BoxDecoration(
                           border: Border.all(
                         color: Colors.white,
@@ -69,30 +71,19 @@ class _BattingPageState extends State<BattingPage> {
                       child: Column(
                         children: [
                           BuildHeader(heading: 'YOUR CHOICES FOR BATTING'),
-                          Padding(
-                            padding: EdgeInsets.all(Sc_width * kItempadding),
-                            child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
-                              children: [
-                                createbtn(1),
-                                createbtn(2),
-                                createbtn(3),
-                              ],
-                            ),
+                          Row(
+                            children: [
+                              createbtn(1),
+                              createbtn(2),
+                              createbtn(3),
+                            ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                bottom: Sc_width * kItempadding),
-                            child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
-                              children: [
-                                createbtn(4),
-                                createbtn(5),
-                                createbtn(6),
-                              ],
-                            ),
+                          Row(
+                            children: [
+                              createbtn(4),
+                              createbtn(5),
+                              createbtn(6),
+                            ],
                           )
                         ],
                       ),
@@ -109,13 +100,21 @@ class _BattingPageState extends State<BattingPage> {
 
   Widget createbtn(int imageno) {
     return RawMaterialButton(
-      child: CircleAvatar(
-        radius: 0.085 * Sc_width,
-        backgroundColor: Colors.blue,       // for border
-        child: CircleAvatar(
-          radius: 0.075 * Sc_width,
-          backgroundColor: Colors.white,
-          child: Image.asset('images/$imageno.png',height: 50),
+
+      child: Container(
+        decoration:
+            BoxDecoration(border: Border.all(color: Colors.white, width: 1)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 17.3, vertical: 15.3),
+          child: CircleAvatar(
+            radius: 0.085 * Sc_width,
+            backgroundColor: Colors.blue, // for border
+            child: CircleAvatar(
+              radius: 0.075 * Sc_width,
+              backgroundColor: Colors.white,
+              child: Image.asset('images/$imageno.png', height: 50),
+            ),
+          ),
         ),
       ),
 

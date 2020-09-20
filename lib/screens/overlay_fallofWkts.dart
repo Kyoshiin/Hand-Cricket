@@ -17,6 +17,8 @@ class FallofWicketScreen extends StatelessWidget {
       backgroundColor: Colors.black.withOpacity(0.90),
       body: RawMaterialButton(
         splashColor: Colors.transparent,
+
+        //FUNCTION OF PAGE
         onPressed: () {
           if ((currentgame.getplayerWickets() == '0' &&
               currentgame.getcpuWickets() == '0') ||
@@ -40,19 +42,27 @@ class FallofWicketScreen extends StatelessWidget {
           else
             Navigator.pop(context);
         },
+
+
         child: SizedBox.expand(
-          child: Center(
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 2)),
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'fall of wicket'.toUpperCase(),
-                  style: TextStyle(fontSize: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('images/out.png'),
+
+              Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 2),
+                color: Colors.blue),
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'fall of wicket'.toUpperCase(),
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ),

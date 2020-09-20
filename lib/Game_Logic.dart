@@ -16,8 +16,7 @@ class GameLogic {
   }
 
   String getNextAction() {
-    String s = 'Get ready to ';
-    return s + (_choice == 'bat' ? 'bowl' : 'bat');
+    return _choice == 'bat' ? 'bowl' : 'bat';
   }
 
   void setWickets(int w) {
