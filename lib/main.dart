@@ -5,6 +5,7 @@ import 'package:hand_cricket_flutter/screens/bowling_page.dart';
 import 'package:hand_cricket_flutter/screens/change_action_page.dart';
 import 'package:hand_cricket_flutter/screens/matchover_page.dart';
 import 'package:hand_cricket_flutter/screens/overlay_fallofWkts.dart';
+import 'package:hand_cricket_flutter/screens/splash_screen.dart';
 
 void main() {
   runApp(HandCricket());
@@ -20,8 +21,9 @@ class HandCricket extends StatelessWidget {
         primaryColor: Colors.blue[600],
         scaffoldBackgroundColor: Colors.green[600]
       ),
-      initialRoute: '/',
+      initialRoute: '/splash',
       routes: {
+        '/splash' : (context) => SplashScreen(),
         '/' : (context) => SelectionPage(),
         '/bat':(context) => BattingPage(),
         '/bowl':(context) =>BowlingPage(),
